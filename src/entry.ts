@@ -1,5 +1,7 @@
-import server from './server'
+import http from 'http'
 
-server.listen(3000, () => {
-	console.log(`server running in ${process.env.SERVER_PORT}`)
-})
+http.createServer((req, res) => {
+	console.log('req', req.url)
+	res.writeHead(200, { 'Content-Type': 'application/json' })
+	res.end('hello world')
+}).listen(3000)

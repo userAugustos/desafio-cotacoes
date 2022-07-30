@@ -1,14 +1,9 @@
 import 'dotenv/config';
-import express from "express";
+import { createServer } from 'http'
+import routes from './routes'
 
-const server = express();
+const server = createServer((req, res) => {
+	routes(req, res)
+})
 
-server.get('/', (_, res: express.Response) => {
-	res.send({
-		from: "Felipe Augustos",
-		to: "Brendinha Diniz",
-		message: "Te amo gatinha <3"
-	});
-});
-
-export default server;
+server.listen(process.env.SERVER_PORT, () => console.log('Server listening on port', process.env.SERVER_PORT))

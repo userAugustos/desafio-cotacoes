@@ -1,6 +1,6 @@
 import axios from "axios"
 
-export async function serviceB(curr: string): Promise<>{
+export async function serviceB(curr: string) {
 	try {
 		const resp = await axios({
 			method: "GET",
@@ -12,7 +12,7 @@ export async function serviceB(curr: string): Promise<>{
 	
 		return {
 			ok: true,
-			message: resp.data,
+			data: resp.data,
 		}
 	} catch (error: any) {
 		console.log(error)

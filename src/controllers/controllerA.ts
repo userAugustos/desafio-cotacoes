@@ -2,20 +2,20 @@ import { ServerResponse } from "http";
 import { serviceA } from "../services/serviceA";
 
 export default async function controllerA(res: ServerResponse, moeda: string): Promise<ServerResponse> {
-	const data = await serviceA(moeda);
+	const { ok, error, data } = await serviceA(moeda);
 
-	if (!data.ok) {
-		res.writeHead(500, { 'Content-Type': 'application/json' })
+	if (!ok) {
+		res.writeHead(400, { 'Content-Type': 'application/json' })
 		res.end(JSON.stringify({
-			errorCode: 500,
-			message: data.error
+			errorCode: 400,
+			message: error
 		}))
 		return res
 	}
 
 	res.writeHead(200, { 'Content-Type': 'application/json' })
 	res.end(JSON.stringify({
-		...data.message
+		...data
 	}))
 
 	return res

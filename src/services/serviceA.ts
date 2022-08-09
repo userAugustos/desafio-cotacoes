@@ -13,7 +13,7 @@ export async function serviceA(moeda: string) {
 	
 		return {
 			ok: true,
-			message: resp.data,
+			data: resp.data,
 		}
 	} catch (error: any) {
 		// console.log(error)
